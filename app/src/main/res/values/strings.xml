@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">IFindYou</string>
 
+    <!-- String related to app -->
+    <string name="name">이름</string>
+    <string name="rank">계급</string>
+    <string name="position">직책</string>
+    <string name="status">현 상황</string>
+    <string name="intro">소개글</string>
+    <string name="phone_number">전화번호</string>
 
     <!-- Strings related to login -->
     <string name="hint_id">아이디</string>
@@ -16,4 +23,7 @@
     <!-- Strings related to register -->
     <string name="register">가입하기</string>
     <string name="another_login">또는 로그인</string>
+    <string name="addition_input">입력해주세요</string>
+    <string name="agreement">계정을 생성하시면 저희의 사용 약관 및 개인 정보 보호정책에 동의하는 것입니다.</string>
+
 </resources>

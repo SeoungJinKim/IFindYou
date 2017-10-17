@@ -7,6 +7,15 @@
 
     <!-- app base color -->
     <color name="base_color"> #ff00ddff </color>
+
+    <!-- gray color -->
+    <color name="Gray_B6">#B6B6B6</color>
+    <color name="Gray_87">#878787</color>
+    <color name="Gray_61">#616161</color>
+    <color name="Gray_E2">#E2E2E2</color>
+    <color name="Gray_A8">#A8A7A4</color>
+    <color name="Gray_ultralight">#F9F7F7</color>
+
     <!-- basic color -->
     <color name="White">#FFFFFFFF</color>
     <color name="Silver">#FFC0C0C0</color>
