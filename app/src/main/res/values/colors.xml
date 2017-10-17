@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+
+    <!-- app base color -->
+    <color name="base_color"> #ff00ddff </color>
     <!-- basic color -->
     <color name="White">#FFFFFFFF</color>
     <color name="Silver">#FFC0C0C0</color>
