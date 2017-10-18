@@ -72,10 +72,12 @@ public class RegisterDialogAdapter extends RecyclerView.Adapter<RegisterDialogAd
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             if (type.equals("rank"))
                 itemViewHolder.tv.setText(mDataset.get(position));
-            else if (type.equals("weight"))
-                itemViewHolder.tv.setText(mDataset.get(position)+"kg");
-            else if (type.equals("age"))
-                itemViewHolder.tv.setText(mDataset.get(position)+"세");
+            else if (type.equals("position"))
+                itemViewHolder.tv.setText(mDataset.get(position));
+            else if (type.equals("unit"))
+                itemViewHolder.tv.setText(mDataset.get(position));
+            else if (type.equals("status"))
+                itemViewHolder.tv.setText(mDataset.get(position));
         }
     }
 
