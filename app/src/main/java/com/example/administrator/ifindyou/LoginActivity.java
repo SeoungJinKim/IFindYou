@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView textAnotherRegister;
+    private Button signInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +22,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         textAnotherRegister = (TextView) findViewById(R.id.another_regist);
+        signInButton = (Button) findViewById(R.id.sign_in_button);
         textAnotherRegister.setOnClickListener(this);
+        signInButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v){
+        Intent intent;
         switch (v.getId()){
             case R.id.another_regist:
-                Intent intent = new Intent(this, RegisterActivity.class);
+                intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+                break;
+            case R.id.sign_in_button:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+                finish();
                 break;
         }
     }

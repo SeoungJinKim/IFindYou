@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/base_color"
+    >
+
+    <ImageButton
+        android:id="@+id/btn_nav_notification"
+        style="@style/Widget.AppCompat.ActionButton"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_noti_off"
+        />
+
+    <ImageView
+        android:id="@+id/pickme_logo"
+        android:layout_width="100dp"
+        android:layout_height="38dp"
+        android:gravity="center_vertical"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center"/>
+
+    <ImageButton
+        android:id="@+id/btn_nav_setting"
+        style="@style/Widget.AppCompat.ActionButton"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="end"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_setting" />
+
+</android.support.v7.widget.Toolbar>

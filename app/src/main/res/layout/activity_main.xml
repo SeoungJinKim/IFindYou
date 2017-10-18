@@ -2,19 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/AppTheme.NoActionBar"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <android.support.v7.widget.Toolbar
+        app:contentInsetStart="0dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:titleTextColor="#fff"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <include
+            android:id="@+id/cs_toolbar"
+            layout="@layout/toolbar"/>
+
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:id="@+id/activity_article_view_imageView_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/dummy" />
+        android:src="@drawable/dummy"
+        android:background="@color/base_color"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:background="@color/base_color"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -45,24 +62,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="23"
-        android:gravity="center">
+        android:weightSum="23">
 
         <EditText
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="19"
-            android:hint="검색하고 싶은 간부님의 성함을 입력하세요"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="13"
+            android:hint="성함을 검색하세요"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            />
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:entries="@array/unit"></Spinner>
+
         <Button
             android:id="@+id/activity_article_view_textView_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="검색"
+
             android:layout_weight="3"
-            android:maxLines="1"
+            android:layout_marginLeft="10dp"
             android:background="@color/Aqua"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="검색"
             android:textAppearance="?android:textAppearanceLarge" />
 
         <ImageView

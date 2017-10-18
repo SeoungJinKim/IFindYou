@@ -1,67 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/AppTheme.NoActionBar">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/register_additional">
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetStart="0dp"
+        app:titleTextColor="#fff">
 
         <include
-            android:id="@+id/view_register_additional"
-            layout="@layout/view_register_additionalinfo" />
+            android:id="@+id/cs_toolbar"
+            layout="@layout/toolbar_sign" />
 
-        <RelativeLayout
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/register_additional"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/btn_layout"
-                android:layout_below="@+id/agreement_txt"
+            <include
+                android:id="@+id/view_register_additional"
+                layout="@layout/view_register_additionalinfo" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:gravity="center"
-                android:minHeight="60dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/register_button"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/Gray_B6"
-                    android:minHeight="60dp"
-                    android:text="@string/register"
-                    android:textColor="@color/White"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/agreement_txt"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:lineSpacingExtra="4dp"
-                android:lines="2"
-                android:minHeight="33dp"
-                android:text="@string/agreement"
-                android:textColor="@color/Gray_87"
-                android:textSize="11.3sp" />
+                android:layout_marginTop="10dp">
 
-        </RelativeLayout>
-    </LinearLayout>
-</ScrollView>
+                <LinearLayout
+                    android:id="@+id/btn_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/agreement_txt"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
+                    android:minHeight="60dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/register_button"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/Gray_B6"
+                        android:minHeight="60dp"
+                        android:text="@string/register"
+                        android:textColor="@color/White"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/agreement_txt"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp"
+                    android:lines="2"
+                    android:minHeight="33dp"
+                    android:text="@string/agreement"
+                    android:textColor="@color/Gray_87"
+                    android:textSize="11.3sp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

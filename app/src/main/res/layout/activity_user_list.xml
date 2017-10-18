@@ -62,7 +62,7 @@
             android:layout_centerVertical="true"
             android:layout_margin="3dp"
             android:layout_toRightOf="@id/user_unit"
-            android:text="계급"
+            android:text="상황"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ImageView

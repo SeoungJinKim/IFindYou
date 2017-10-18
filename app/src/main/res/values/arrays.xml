@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rank">
+        <item>대장</item>
+        <item>대장(진)</item>
+        <item>중장</item>
+        <item>중장(진)</item>
+        <item>소장</item>
+        <item>소장(진)</item>
+        <item>준장</item>
+        <item>준장(진)</item>
+        <item>대령</item>
+        <item>대령(진)</item>
+        <item>중령</item>
+        <item>중령(진)</item>
+        <item>소령</item>
+        <item>소령(진)</item>
+        <item>대위</item>
+        <item>대위(진)</item>
+        <item>중위</item>
+        <item>중위(진)</item>
+        <item>소위</item>
+        <item>준위</item>
+        <item>원사</item>
+        <item>원사(진)</item>
+        <item>상사</item>
+        <item>상사(진)</item>
+        <item>중사</item>
+        <item>중사(진)</item>
+        <item>하사</item>
+    </string-array>
+
+    <string-array name="unit">
+        <item>전체</item>
+        <item>국방부</item>
+        <item>육군본부</item>
+        <item>공군본부</item>
+        <item>해군본부</item>
+        <item>1사단</item>
+        <item>2사단</item>
+        <item>50사단</item>
+        <item>37사단</item>
+        <item>53사단</item>
+        <item>기타</item>
+    </string-array>
+</resources>
