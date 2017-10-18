@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:minHeight="60dp"
+        android:layout_marginTop="8dp"
+        android:minHeight="50dp"
         android:orientation="horizontal">
 
         <TextView
@@ -30,7 +32,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
                 android:id="@+id/text_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -38,7 +40,12 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="@string/addition_input"
+                android:hint="@string/addition_input"
+                android:imeActionId="100"
+                android:imeOptions="actionDone"
+                android:inputType="textPersonName"
+                android:maxLength="12"
+                android:maxLines="1"
                 android:textColor="@color/Gray_B6"
                 android:textSize="20sp" />
 
@@ -58,8 +65,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:minHeight="60dp"
+        android:layout_marginTop="8dp"
+        android:minHeight="50dp"
         android:orientation="horizontal">
 
         <TextView
@@ -116,8 +123,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:minHeight="60dp"
+        android:layout_marginTop="8dp"
+        android:minHeight="50dp"
         android:orientation="horizontal">
 
         <TextView
@@ -174,8 +181,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:minHeight="60dp"
+        android:layout_marginTop="8dp"
+        android:minHeight="50dp"
         android:orientation="horizontal">
 
         <TextView
@@ -219,8 +226,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- LINE 5 -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
@@ -228,11 +233,13 @@
         android:layout_marginRight="16dp"
         android:background="@color/Black" />
 
+    <!-- LINE 5 -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:minHeight="60dp"
+        android:layout_marginTop="8dp"
+        android:minHeight="50dp"
         android:orientation="horizontal">
 
         <TextView
@@ -254,7 +261,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
                 android:id="@+id/text_intro"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -262,7 +269,11 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="@string/addition_input"
+                android:hint="@string/addition_input"
+                android:imeActionId="100"
+                android:imeOptions="actionDone"
+                android:inputType="textLongMessage"
+                android:maxLines="1"
                 android:textColor="@color/Gray_B6"
                 android:textSize="20sp" />
 
@@ -282,8 +293,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:minHeight="60dp"
+        android:layout_marginTop="8dp"
+        android:minHeight="50dp"
         android:orientation="horizontal">
 
         <TextView
@@ -305,7 +316,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
                 android:id="@+id/text_phone_number"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -313,9 +324,14 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="@string/addition_input"
+                android:hint="@string/addition_input"
+                android:imeActionId="100"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
                 android:textColor="@color/Gray_B6"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:maxLength="12"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -332,8 +348,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:minHeight="60dp"
+        android:layout_marginTop="8dp"
+        android:minHeight="50dp"
         android:orientation="horizontal">
 
         <TextView
