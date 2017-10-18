@@ -50,7 +50,6 @@ public class RegisterAdditionalActivity extends AppCompatActivity implements Vie
     @Override
     public void onClick(View v) {
         if (v == layoutRank) {
-            Log.d("Click", "layoutRank Click");
             RegisterDialog.getInstance().dialogRank(mPopupDlg, this, textRank);
         }
         if (isCompletedInput) {

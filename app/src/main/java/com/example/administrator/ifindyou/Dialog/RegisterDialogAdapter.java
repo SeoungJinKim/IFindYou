@@ -71,7 +71,7 @@ public class RegisterDialogAdapter extends RecyclerView.Adapter<RegisterDialogAd
             });
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             if (type.equals("rank"))
-                itemViewHolder.tv.setText(mDataset.get(position)+"cm");
+                itemViewHolder.tv.setText(mDataset.get(position));
             else if (type.equals("weight"))
                 itemViewHolder.tv.setText(mDataset.get(position)+"kg");
             else if (type.equals("age"))

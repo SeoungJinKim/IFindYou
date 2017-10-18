@@ -21,6 +21,7 @@ public class RegisterDialog {
     private volatile static RegisterDialog single;
     RecyclerView recyclerView;
     RegisterDialogAdapter adapter;
+    TextView title;
 
     public static RegisterDialog getInstance() {
         if (single == null) {
@@ -36,6 +37,8 @@ public class RegisterDialog {
     public void dialogRank(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity , final TextView tv) {
         final View linear = (LinearLayout) View.inflate(activity, R.layout.dialog_register, null);
         ImageView closeBtn = (ImageView) linear.findViewById(R.id.close_btn);
+        title = (TextView) linear.findViewById(R.id.dialog_text);
+        title.setText(activity.getString(R.string.rank) + "을 선택하여 주십시오");
 
         recyclerView = (RecyclerView) linear.findViewById(R.id.register_dialog_recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -51,14 +54,37 @@ public class RegisterDialog {
             @Override
             public void onItemClick(View view, int position) {
                 dismissDlg(mPopupDlg2);
-                setTextWithColor(tv, adapter.mDataset.get(position)+"kg", activity);
-
+                setTextWithColor(tv, adapter.mDataset.get(position), activity);
             }
-        }, activity.getApplicationContext(), "weight");
+        }, activity.getApplicationContext(), "rank");
 
         adapter.clear();
-        for (int i=20; i<200; i++)
-            adapter.addData(i+"");
+        adapter.addData(activity.getString(R.string.four_star)+"");
+        adapter.addData(activity.getString(R.string.before_four_star)+"");
+        adapter.addData(activity.getString(R.string.three_star)+"");
+        adapter.addData(activity.getString(R.string.before_three_star)+"");
+        adapter.addData(activity.getString(R.string.two_star)+"");
+        adapter.addData(activity.getString(R.string.before_two_star)+"");
+        adapter.addData(activity.getString(R.string.one_star)+"");
+        adapter.addData(activity.getString(R.string.before_one_star)+"");
+        adapter.addData(activity.getString(R.string.three_bam)+"");
+        adapter.addData(activity.getString(R.string.before_three_bam)+"");
+        adapter.addData(activity.getString(R.string.two_bam)+"");
+        adapter.addData(activity.getString(R.string.before_two_bam)+"");
+        adapter.addData(activity.getString(R.string.one_bam)+"");
+        adapter.addData(activity.getString(R.string.before_one_bam)+"");
+        adapter.addData(activity.getString(R.string.three_dia)+"");
+        adapter.addData(activity.getString(R.string.before_three_dia)+"");
+        adapter.addData(activity.getString(R.string.two_dia)+"");
+        adapter.addData(activity.getString(R.string.before_two_dia)+"");
+        adapter.addData(activity.getString(R.string.one_dia)+"");
+        adapter.addData(activity.getString(R.string.yellow_dia)+"");
+        adapter.addData(activity.getString(R.string.four_staff)+"");
+        adapter.addData(activity.getString(R.string.before_four_staff)+"");
+        adapter.addData(activity.getString(R.string.three_staff)+"");
+        adapter.addData(activity.getString(R.string.before_three_staff)+"");
+        adapter.addData(activity.getString(R.string.two_staff)+"");
+        adapter.addData(activity.getString(R.string.one_staff)+"");
 
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
