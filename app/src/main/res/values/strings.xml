@@ -8,6 +8,7 @@
     <string name="status">현 상황</string>
     <string name="intro">소개글</string>
     <string name="phone_number">전화번호</string>
+    <string name="unit">소속</string>
 
     <!-- Strings related to login -->
     <string name="hint_id">아이디</string>
