@@ -32,7 +32,6 @@ public class SplashActivity extends AppCompatActivity {
     private boolean loadId(){
         SharedPreferences pref = getSharedPreferences("PrefIFindYou", Activity.MODE_PRIVATE);
         String temp = pref.getString("User_Id","");
-        Log.d("pref", temp+"ㅎㅇ");
         if(!temp.equals("")) return true;
         else return false;
     }

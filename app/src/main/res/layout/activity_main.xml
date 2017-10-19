@@ -69,7 +69,7 @@
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="13"
+            android:layout_weight="10"
             android:hint="성함을 검색하세요"
             android:imeOptions="actionDone"
             android:maxLines="1"
@@ -78,7 +78,8 @@
         <Spinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="6"
+            android:layout_weight="9"
+            android:textAlignment="center"
             android:entries="@array/unit"></Spinner>
 
         <Button

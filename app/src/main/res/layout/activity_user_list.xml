@@ -66,25 +66,25 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ImageView
-            android:id="@+id/icon_call"
+            android:id="@+id/icon_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/user_status"
-            android:src="@drawable/icon_close"/>
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icon_close" />
 
         <ImageView
             android:id="@+id/icon_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/icon_call"
-            android:src="@drawable/icon_close"/>
+            android:layout_toLeftOf="@id/icon_star"
+            android:src="@drawable/icon_close" />
 
         <ImageView
-            android:id="@+id/icon_star"
+            android:id="@+id/icon_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/icon_request"
-            android:src="@drawable/icon_close"/>
+            android:layout_toLeftOf="@id/icon_request"
+            android:src="@drawable/icon_close" />
 
     </RelativeLayout>
 
