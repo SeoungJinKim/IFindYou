@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -30,7 +31,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
-    private ImageButton iconSetting, iconNoti;
+    private ImageButton iconSetting, iconNoti, iconStar;
     private SharedPreferences pref;
     private ArrayList<User> userList;
     private ListView userListView;
@@ -54,11 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchName = (EditText) findViewById(R.id.search_name);
         searchButton = (Button) findViewById(R.id.search_button);
         chooseUnit = (Spinner) findViewById(R.id.choose_unit);
+        iconSetting = (ImageButton) findViewById(R.id.icon_star);
 
         iconSetting.setOnClickListener(this);
         iconNoti.setOnClickListener(this);
         searchName.setOnEditorActionListener(this);
         searchButton.setOnClickListener(this);
+        iconSetting.setOnClickListener(this);
 
         userListView = (ListView) findViewById(android.R.id.list);
         refreshData(0);
@@ -97,6 +100,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 searchName.clearFocus();
                 refreshData(1);
                 break;
+            case R.id.icon_star:
+                refreshData(0);
+                break;
         }
     }
 
@@ -105,27 +111,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void listView(String jsonData) {
         UserListView userDataList = new UserListView(getApplicationContext());
         CustomAdapter customAdapter;
-        if(jsonData != null) {
+        if (jsonData != null) {
             userList = userDataList.getJsonData(jsonData);
             customAdapter = new CustomAdapter(this, R.layout.activity_user_list, userList);
             userListView.setAdapter(customAdapter);
-        }
-        else
-        {
+        } else {
             userListView.setEmptyView(findViewById(android.R.id.empty));
             customAdapter = null;
             userListView.setAdapter(customAdapter);
+            userListView.setOnItemClickListener();
         }
 
     }
 
     private void refreshData(int check) {
-        RequestParams params = new RequestParams();
+        RequestParams params;
 
         if (check == 0) {
+            params = new RequestParams();
             params.put("Id", pref.getString("User_Id", ""));
 
-            client.get("http://10.53.128.156:5013/loadStarData", params, new AsyncHttpResponseHandler() {
+            client.get(getResources().getString(R.string.url) + "loadStarData", params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     Log.d("data", "DataLoadSuccess " + responseBody + " statuscode" + statusCode);
@@ -136,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         String jsonData = new String(responseBody);
 
                         listView(jsonData);
-                    }
+                    } else listView(null);
                 }
 
                 @Override
@@ -144,10 +150,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("login_attempt", "attempt: " + statusCode);
                 }
             });
-        } else {
+        } else if (check == 1) {
+            params = new RequestParams();
             params.put("Name", searchName.getText().toString());
             params.put("Unit", chooseUnit.getSelectedItem().toString());
-            client.get("http://10.53.128.156:5013/loadSearchData", params, new AsyncHttpResponseHandler() {
+            client.get(getResources().getString(R.string.url) + "loadSearchData", params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     Log.d("data", "DataLoadSuccess " + responseBody + " statuscode" + statusCode);
@@ -158,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         String jsonData = new String(responseBody);
 
                         listView(jsonData);
-                    }else listView(null);
+                    } else listView(null);
                 }
 
                 @Override
@@ -166,6 +173,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("login_attempt", "attempt: " + statusCode);
                 }
             });
+        } else if (check == 2) {
+            params = new RequestParams();
+            params.put("Id", pref.getString("User_Id", ""));
+            params.put("StarId",userList.get(1));
         }
     }
 }

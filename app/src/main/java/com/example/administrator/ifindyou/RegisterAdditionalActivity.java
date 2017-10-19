@@ -19,8 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.ifindyou.Dialog.RegisterDialog;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import java.util.HashMap;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Administrator on 2017-10-18.
@@ -72,6 +77,8 @@ public class RegisterAdditionalActivity extends AppCompatActivity implements Vie
         textPhone.setOnEditorActionListener(this);
     }
 
+    private static AsyncHttpClient client = new AsyncHttpClient();
+
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent e) {
         if (actionId == EditorInfo.IME_ACTION_DONE && v.getId() == R.id.text_name) {
@@ -99,20 +106,43 @@ public class RegisterAdditionalActivity extends AppCompatActivity implements Vie
             RegisterDialog.getInstance().dialogRank(mPopupDlg, this, textRank);
         } else if (v == layoutPosition) {
             RegisterDialog.getInstance().dialogPosition(mPopupDlg, this, textPosition);
-        } else if( v== layoutUnit){
+        } else if (v == layoutUnit) {
             RegisterDialog.getInstance().dialogUnit(mPopupDlg, this, textUnit);
-        } else if(v==layoutStatus){
+        } else if (v == layoutStatus) {
             RegisterDialog.getInstance().dialogStatus(mPopupDlg, this, textStatus);
         }
         if (isCompletedInput) {
             if (v == registerBtn) {
-                Intent intent = new Intent(this, MainActivity.class);
-                //HashMap field = (HashMap) postField(email, password);
-                //intent.putExtra("Field", field);
-                startActivity(intent);
-                overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-                //connRegistCall(email, password);
-                finish();
+
+                String id = getIntent().getExtras().getString("id");
+                String password = getIntent().getExtras().getString("password");
+
+                RequestParams params = new RequestParams();
+                params.put("Id", id);
+                params.put("Password", password);
+                params.put("Name", textName.getText().toString());
+                params.put("Rank", textRank.getText().toString());
+                params.put("Position", textPosition.getText().toString());
+                params.put("Unit", textUnit.getText().toString());
+                params.put("Content", textIntro.getText().toString());
+                params.put("PhoneNumber", textPhone.getText().toString());
+                params.put("Status", textStatus.getText().toString());
+                params.put("ImgName", "temp.jpg");
+
+                client.post(getResources().getString(R.string.url) + "signup", params, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        final Intent intent = new Intent(RegisterAdditionalActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                    }
+                });
             }
         }
     }

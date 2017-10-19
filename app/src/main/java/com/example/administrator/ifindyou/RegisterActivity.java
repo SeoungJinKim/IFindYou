@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -14,6 +15,7 @@ import android.widget.TextView;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView tvAdditionalRegister;
+    private EditText etId,etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         tvAdditionalRegister = (TextView) findViewById(R.id.register_button);
+        etId = (EditText) findViewById(R.id.id);
+        etPassword = (EditText) findViewById(R.id.password);
         tvAdditionalRegister.setOnClickListener(this);
     }
 
@@ -29,6 +33,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.register_button:
                 Intent intent = new Intent(this, RegisterAdditionalActivity.class);
+                intent.putExtra("id",etId.getText().toString());
+                intent.putExtra("password",etPassword.getText().toString());
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
                 break;

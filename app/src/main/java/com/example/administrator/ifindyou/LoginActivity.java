@@ -100,11 +100,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             focusView.requestFocus();
         } else {
             RequestParams params = new RequestParams();
-            params.put("Id", id);
-            params.put("Password", password);
+            params.put("id", id);
+            params.put("password", password);
             Log.d("params", "params: " + id);
 
-            client.get("http://10.53.128.156:5013/login", params, new AsyncHttpResponseHandler() {
+            client.get(getResources().getString(R.string.url)+ "login", params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     Log.d("login", "LoginSuccess");

@@ -54,7 +54,7 @@ public class UserListView {
                 imgName = jObj.getString("ImgName");
 
                 userList.add(new User(userNumber, id, name, rank, position, unit, content, phoneNumber, status, imgName));
-                fileDownloader.downFile("http://10.53.128.156:5013/image/" + imgName, imgName);
+                fileDownloader.downFile(context.getResources().getString(R.string.url)+"image/" + imgName, imgName);
             }
         } catch (JSONException e) {
             e.printStackTrace();
