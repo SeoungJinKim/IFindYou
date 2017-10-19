@@ -99,7 +99,8 @@
             android:text="검색"
             android:textAppearance="?android:textAppearanceLarge" />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/btn_star"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -107,8 +108,13 @@
             android:src="@drawable/icon_close" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/Black" />
+
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/main_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
 
@@ -116,6 +122,7 @@
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="즐겨찾기한 사람이 없습니다."/>
+        android:text="해당하는 사람이 없습니다."
+        android:layout_gravity="center"/>
 
 </LinearLayout>
