@@ -108,16 +108,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     Log.d("login", "LoginSuccess");
+                    if (statusCode == 204) {
+                        Toast.makeText(LoginActivity.this,"잘못된 정보를 입력하셨습니다.",Toast.LENGTH_SHORT).show();
+                    }
                     // SAVE SESSION_KEY - PREF
-                    SharedPreferences prefs = getSharedPreferences("PrefIFindYou", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString("User_Id",id);
-                    editor.commit();
+                    else {
+                        SharedPreferences prefs = getSharedPreferences("PrefIFindYou", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("User_Id", id);
+                        editor.commit();
 
-                    intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+                        intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+                    }
                 }
 
                 @Override

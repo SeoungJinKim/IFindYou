@@ -92,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.search_button:
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(searchName.getWindowToken(), 0);
+                searchName.clearFocus();
                 refreshData(1);
                 break;
         }
