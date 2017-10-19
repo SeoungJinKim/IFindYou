@@ -108,9 +108,14 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/custom_list_listView"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
 
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="결과가 없습니다."/>
 
 </LinearLayout>

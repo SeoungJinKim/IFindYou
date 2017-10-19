@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchName.setOnEditorActionListener(this);
         searchButton.setOnClickListener(this);
 
-        userListView = (ListView) findViewById(R.id.custom_list_listView);
+        userListView = (ListView) findViewById(android.R.id.list);
         refreshData(0);
     }
 
@@ -100,11 +100,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private void listView(String jsonData) {
-
         UserListView userDataList = new UserListView(getApplicationContext());
-        userList = userDataList.getJsonData(jsonData);
-        CustomAdapter customAdapter = new CustomAdapter(this, R.layout.activity_user_list, userList);
-        userListView.setAdapter(customAdapter);
+        CustomAdapter customAdapter;
+        if(jsonData != null) {
+            userList = userDataList.getJsonData(jsonData);
+            customAdapter = new CustomAdapter(this, R.layout.activity_user_list, userList);
+            userListView.setAdapter(customAdapter);
+        }
+        else
+        {
+            userListView.setEmptyView(findViewById(android.R.id.empty));
+            customAdapter = null;
+            userListView.setAdapter(customAdapter);
+        }
+
     }
 
     private void refreshData(int check) {
@@ -132,11 +141,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("login_attempt", "attempt: " + statusCode);
                 }
             });
-        }
-        else
-        {
-            params.put("Name",searchName.getText().toString());
-            params.put("Unit",chooseUnit.getSelectedItem().toString());
+        } else {
+            params.put("Name", searchName.getText().toString());
+            params.put("Unit", chooseUnit.getSelectedItem().toString());
             client.get("http://10.53.128.156:5013/loadSearchData", params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -148,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         String jsonData = new String(responseBody);
 
                         listView(jsonData);
-                    }
+                    }else listView(null);
                 }
 
                 @Override

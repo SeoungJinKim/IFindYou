@@ -15,9 +15,10 @@ import java.util.ArrayList;
 public class UserListView {
     private Context context;
 
-    public UserListView(Context context){
+    public UserListView(Context context) {
         this.context = context;
     }
+
     public ArrayList<User> getJsonData(String jsonData) {
 
         ArrayList<User> userList = new ArrayList<User>();
@@ -52,7 +53,7 @@ public class UserListView {
                 status = jObj.getString("Status");
                 imgName = jObj.getString("ImgName");
 
-                userList.add(new User(userNumber,id,name,rank,position,unit,content,phoneNumber,status,imgName));
+                userList.add(new User(userNumber, id, name, rank, position, unit, content, phoneNumber, status, imgName));
                 fileDownloader.downFile("http://10.53.128.156:5013/image/" + imgName, imgName);
             }
         } catch (JSONException e) {
