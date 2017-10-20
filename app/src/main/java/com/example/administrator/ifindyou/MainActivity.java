@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Log.d("login_attempt", "attempt: " + statusCode);
+                Toast.makeText(MainActivity.this, "즐겨찾기 해제되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }
