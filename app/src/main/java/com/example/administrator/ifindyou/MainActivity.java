@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // null 처리 해줄것
                 if (statusCode == 201) {
                     Toast.makeText(MainActivity.this, "즐겨찾기 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                } else if (statusCode == 410) {
+                } else{
                     Toast.makeText(MainActivity.this, "즐겨찾기 해제되었습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
