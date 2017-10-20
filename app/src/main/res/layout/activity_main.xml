@@ -58,19 +58,17 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="23">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
 
         <EditText
             android:id="@+id/search_name"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="10"
             android:hint="성함을 검색하세요"
             android:imeActionId="100"
             android:imeActionLabel="검색"
@@ -80,33 +78,37 @@
 
         <Spinner
             android:id="@+id/choose_unit"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="8"
+            android:layout_toRightOf="@id/search_name"
             android:entries="@array/unit"
+            android:layout_marginTop="10dp"
             android:textAlignment="center"></Spinner>
-
-        <Button
-            android:id="@+id/search_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_marginLeft="10dp"
-            android:layout_weight="3"
-            android:background="@color/Aqua"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="검색"
-            android:textAppearance="?android:textAppearanceLarge" />
 
         <ImageButton
             android:id="@+id/btn_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:src="@drawable/star"/>
-    </LinearLayout>
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/star" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+
+            android:layout_toLeftOf="@id/btn_star"
+            android:background="@color/Aqua"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="검색"
+            android:textSize="15dp"
+            android:layout_alignBaseline="@id/btn_star"/>
+
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -122,7 +124,7 @@
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="해당하는 사람이 없습니다."
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:text="해당하는 사람이 없습니다." />
 
 </LinearLayout>
