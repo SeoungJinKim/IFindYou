@@ -30,14 +30,30 @@
 
             <include
                 android:id="@+id/view_register_additional"
-                layout="@layout/view_register_additionalinfo" />
+                layout="@layout/view_register_setting" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginTop="10dp">
-            </RelativeLayout>
+
+                <Button
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="수정"/>
+
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그아웃"/>
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

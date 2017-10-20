@@ -21,11 +21,11 @@
     </android.support.v7.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/activity_article_view_imageView_photo"
+        android:id="@+id/user_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/base_color"
-        android:src="@drawable/dummy" />
+        android:src="@drawable/default_img" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/activity_article_view_textView_writer"
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
@@ -46,12 +46,12 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/activity_article_view_textView_time"
+            android:id="@+id/user_status_my"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:gravity="center"
-            android:text="수정시간"
+            android:text="상황"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#bbbbbb"
             android:textStyle="bold" />
@@ -101,11 +101,11 @@
 
         <ImageButton
             android:id="@+id/btn_star"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="2"
-            android:src="@drawable/icon_close" />
+            android:src="@drawable/star"/>
     </LinearLayout>
 
     <LinearLayout

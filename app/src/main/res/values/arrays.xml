@@ -43,4 +43,35 @@
         <item>53사단</item>
         <item>기타</item>
     </string-array>
+
+    <string-array name="position">
+        <item>장관</item>
+        <item>사단장</item>
+        <item>군단장</item>
+        <item>여단장</item>
+        <item>대대장</item>
+        <item>정작과장</item>
+        <item>인사과장</item>
+        <item>중대장</item>
+        <item>소대장</item>
+        <item>부소대장</item>
+        <item>주임원사</item>
+        <item>행정보급관</item>
+        <item>통신반장</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="status">
+        <item>행정반</item>
+        <item>지휘통제실</item>
+        <item>회의</item>
+        <item>당직</item>
+        <item>휴가</item>
+        <item>근무취침</item>
+        <item>배차</item>
+        <item>훈련</item>
+        <item>위병</item>
+        <item>면담</item>
+        <item>기타</item>
+    </string-array>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.administrator.ifindyou.Dialog;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
@@ -25,7 +26,7 @@ public class RegisterDialog {
 
     public static RegisterDialog getInstance() {
         if (single == null) {
-            synchronized(RegisterDialog.class) {
+            synchronized (RegisterDialog.class) {
                 if (single == null) {
                     single = new RegisterDialog();
                 }
@@ -34,7 +35,7 @@ public class RegisterDialog {
         return single;
     }
 
-    public void dialogRank(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity , final TextView tv) {
+    public void dialogRank(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity, final TextView tv) {
         final View linear = (LinearLayout) View.inflate(activity, R.layout.dialog_register, null);
         ImageView closeBtn = (ImageView) linear.findViewById(R.id.close_btn);
         title = (TextView) linear.findViewById(R.id.dialog_text);
@@ -54,37 +55,37 @@ public class RegisterDialog {
             @Override
             public void onItemClick(View view, int position) {
                 dismissDlg(mPopupDlg2);
-                setTextWithColor(tv, adapter.mDataset.get(position), activity);
+                setTextWithColor(tv, adapter.mDataset.get(position), (RegisterAdditionalActivity) activity);
             }
         }, activity.getApplicationContext(), "rank");
 
         adapter.clear();
-        adapter.addData(activity.getString(R.string.four_star)+"");
-        adapter.addData(activity.getString(R.string.before_four_star)+"");
-        adapter.addData(activity.getString(R.string.three_star)+"");
-        adapter.addData(activity.getString(R.string.before_three_star)+"");
-        adapter.addData(activity.getString(R.string.two_star)+"");
-        adapter.addData(activity.getString(R.string.before_two_star)+"");
-        adapter.addData(activity.getString(R.string.one_star)+"");
-        adapter.addData(activity.getString(R.string.before_one_star)+"");
-        adapter.addData(activity.getString(R.string.three_bam)+"");
-        adapter.addData(activity.getString(R.string.before_three_bam)+"");
-        adapter.addData(activity.getString(R.string.two_bam)+"");
-        adapter.addData(activity.getString(R.string.before_two_bam)+"");
-        adapter.addData(activity.getString(R.string.one_bam)+"");
-        adapter.addData(activity.getString(R.string.before_one_bam)+"");
-        adapter.addData(activity.getString(R.string.three_dia)+"");
-        adapter.addData(activity.getString(R.string.before_three_dia)+"");
-        adapter.addData(activity.getString(R.string.two_dia)+"");
-        adapter.addData(activity.getString(R.string.before_two_dia)+"");
-        adapter.addData(activity.getString(R.string.one_dia)+"");
-        adapter.addData(activity.getString(R.string.yellow_dia)+"");
-        adapter.addData(activity.getString(R.string.four_staff)+"");
-        adapter.addData(activity.getString(R.string.before_four_staff)+"");
-        adapter.addData(activity.getString(R.string.three_staff)+"");
-        adapter.addData(activity.getString(R.string.before_three_staff)+"");
-        adapter.addData(activity.getString(R.string.two_staff)+"");
-        adapter.addData(activity.getString(R.string.one_staff)+"");
+        adapter.addData(activity.getString(R.string.four_star) + "");
+        adapter.addData(activity.getString(R.string.before_four_star) + "");
+        adapter.addData(activity.getString(R.string.three_star) + "");
+        adapter.addData(activity.getString(R.string.before_three_star) + "");
+        adapter.addData(activity.getString(R.string.two_star) + "");
+        adapter.addData(activity.getString(R.string.before_two_star) + "");
+        adapter.addData(activity.getString(R.string.one_star) + "");
+        adapter.addData(activity.getString(R.string.before_one_star) + "");
+        adapter.addData(activity.getString(R.string.three_bam) + "");
+        adapter.addData(activity.getString(R.string.before_three_bam) + "");
+        adapter.addData(activity.getString(R.string.two_bam) + "");
+        adapter.addData(activity.getString(R.string.before_two_bam) + "");
+        adapter.addData(activity.getString(R.string.one_bam) + "");
+        adapter.addData(activity.getString(R.string.before_one_bam) + "");
+        adapter.addData(activity.getString(R.string.three_dia) + "");
+        adapter.addData(activity.getString(R.string.before_three_dia) + "");
+        adapter.addData(activity.getString(R.string.two_dia) + "");
+        adapter.addData(activity.getString(R.string.before_two_dia) + "");
+        adapter.addData(activity.getString(R.string.one_dia) + "");
+        adapter.addData(activity.getString(R.string.yellow_dia) + "");
+        adapter.addData(activity.getString(R.string.four_staff) + "");
+        adapter.addData(activity.getString(R.string.before_four_staff) + "");
+        adapter.addData(activity.getString(R.string.three_staff) + "");
+        adapter.addData(activity.getString(R.string.before_three_staff) + "");
+        adapter.addData(activity.getString(R.string.two_staff) + "");
+        adapter.addData(activity.getString(R.string.one_staff) + "");
 
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
@@ -97,7 +98,7 @@ public class RegisterDialog {
         });
     }
 
-    public void dialogPosition(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity , final TextView tv) {
+    public void dialogPosition(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity, final TextView tv) {
         final View linear = (LinearLayout) View.inflate(activity, R.layout.dialog_register, null);
         ImageView closeBtn = (ImageView) linear.findViewById(R.id.close_btn);
         title = (TextView) linear.findViewById(R.id.dialog_text);
@@ -149,7 +150,7 @@ public class RegisterDialog {
         });
     }
 
-    public void dialogUnit(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity , final TextView tv) {
+    public void dialogUnit(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity, final TextView tv) {
         final View linear = (LinearLayout) View.inflate(activity, R.layout.dialog_register, null);
         ImageView closeBtn = (ImageView) linear.findViewById(R.id.close_btn);
         title = (TextView) linear.findViewById(R.id.dialog_text);
@@ -197,7 +198,7 @@ public class RegisterDialog {
         });
     }
 
-    public void dialogStatus(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity , final TextView tv) {
+    public void dialogStatus(DialogInterface mPopupDlg, final RegisterAdditionalActivity activity, final TextView tv) {
         final View linear = (LinearLayout) View.inflate(activity, R.layout.dialog_register, null);
         ImageView closeBtn = (ImageView) linear.findViewById(R.id.close_btn);
         title = (TextView) linear.findViewById(R.id.dialog_text);

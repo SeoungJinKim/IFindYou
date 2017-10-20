@@ -1,18 +1,20 @@
 package com.example.administrator.ifindyou;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2017-10-19.
  */
 
-public class UserListView {
+public class UserListView implements Serializable{
     private Context context;
 
     public UserListView(Context context) {

@@ -4,13 +4,16 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:weightSum="6"
+    android:layout_margin="4dp"
+    android:layout_centerVertical="true"
     android:descendantFocusability="blocksDescendants">
 
     <ImageView
         android:id="@+id/custom_row_imageView1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:src="@drawable/default_img_samll"/>
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -72,21 +75,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:focusable="false"
-            android:src="@drawable/icon_close" />
+            android:src="@drawable/star" />
 
         <ImageView
             android:id="@+id/icon_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/icon_star"
-            android:src="@drawable/icon_close" />
+            android:src="@drawable/location" />
 
         <ImageView
             android:id="@+id/icon_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/icon_request"
-            android:src="@drawable/icon_close" />
+            android:src="@drawable/phone" />
 
     </RelativeLayout>
 

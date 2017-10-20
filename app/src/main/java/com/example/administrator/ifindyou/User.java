@@ -1,11 +1,20 @@
 package com.example.administrator.ifindyou;
 
+import android.content.Context;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2017-10-19.
  */
 
 public class User {
 
+    private User user;
     private int userNumber;
     private String id;
     private String name;
@@ -16,6 +25,7 @@ public class User {
     private int phoneNumber;
     private String status;
     private String imgName;
+    private Context context;
 
     public int getUserNumber() {
         return userNumber;

@@ -4,7 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +28,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -34,6 +40,8 @@ import cz.msebera.android.httpclient.Header;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, AdapterView.OnItemClickListener, CustomAdapter.ListBtnClickListener {
 
     private RequestParams params;
+    private ImageView userProfile;
+    private TextView userName,userStatus;
     private ImageButton iconSetting, iconNoti;
     private SharedPreferences pref;
     private ArrayList<User> userList;
@@ -41,21 +49,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText searchName;
     private Button searchButton;
     private Spinner chooseUnit;
-    private String userId;
+    private String userId, filePath, fileName;
     private ImageButton starBtn;
     private CustomAdapter customAdapter = null;
     private static AsyncHttpClient client = new AsyncHttpClient();
+
+    private static final int REQUEST_PHOTO_ALBUM = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        pref = getSharedPreferences("PrefIFindYou", Activity.MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = pref.getString("User","");
+        User obj = gson.fromJson(json,User.class);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
-
-        pref = getSharedPreferences("PrefIFindYou", Activity.MODE_PRIVATE);
         userId = pref.getString("User_Id", "");
         iconSetting = (ImageButton) findViewById(R.id.btn_nav_setting);
         iconNoti = (ImageButton) findViewById(R.id.btn_nav_notification);
@@ -63,12 +77,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchButton = (Button) findViewById(R.id.search_button);
         chooseUnit = (Spinner) findViewById(R.id.choose_unit);
         starBtn = (ImageButton) findViewById(R.id.btn_star);
+        userName = (TextView) findViewById(R.id.user_name);
+        userProfile = (ImageView) findViewById(R.id.user_profile);
+        userStatus = (TextView) findViewById(R.id.user_status_my);
+
+        userName.setText(pref.getString("Name",""));
+        userStatus.setText(pref.getString("Status",""));
 
         iconSetting.setOnClickListener(this);
         iconNoti.setOnClickListener(this);
         searchName.setOnEditorActionListener(this);
         searchButton.setOnClickListener(this);
         starBtn.setOnClickListener(this);
+        userProfile.setOnClickListener(this);
 
         userListView = (ListView) findViewById(R.id.main_list_view);
         refreshData(0);
@@ -79,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         params = new RequestParams();
         params.put("Id", userId);
         params.put("StarId", userList.get(position).getId());
-        Log.d("여기","");
+        Log.d("여기", "");
         client.post(getResources().getString(R.string.url) + "starManage", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -111,6 +132,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        try{
+            if(requestCode == REQUEST_PHOTO_ALBUM){
+                Uri uri = getRealPathUri(data.getData());
+                filePath = uri.toString();
+                fileName = uri.getLastPathSegment();
+            }
+
+            Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+            userProfile.setImageBitmap(bitmap);
+        }catch (Exception e){
+
+        }
+    }
+
+    private Uri getRealPathUri(Uri uri){
+        Uri filePathUri = uri;
+        if(uri.getScheme().toString().compareTo("content") == 0){
+            Cursor cursor = getApplicationContext().getContentResolver().query(uri, null, null, null, null);
+            if(cursor.moveToFirst()){
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                filePathUri = Uri.parse(cursor.getString(column_index));
+            }
+        }
+        return filePathUri;
+    }
+
+    @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
@@ -121,11 +172,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_nav_notification:
                 SharedPreferences.Editor editor = pref.edit();
-                editor.remove("User_Id");
+                editor.clear();
                 editor.commit();
-                intent = new Intent(this, LoginActivity.class);
+                intent = new Intent(this, NotificationActivity.class);
                 startActivity(intent);
-                finish();
                 break;
             case R.id.search_button:
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -135,6 +185,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_star:
                 refreshData(0);
+                break;
+            case R.id.user_profile:
+                intent = new Intent(Intent.ACTION_PICK);
+
+                intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, REQUEST_PHOTO_ALBUM);
                 break;
         }
     }

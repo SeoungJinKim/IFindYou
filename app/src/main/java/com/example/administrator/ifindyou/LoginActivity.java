@@ -15,11 +15,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.ContentType;
@@ -37,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button signInButton;
     private AutoCompleteTextView mIdView;
     private EditText mPasswordView;
+    private ArrayList<User> userList;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,17 +112,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             params.put("Password", password);
             Log.d("params", "params: " + id);
 
-            client.get(getResources().getString(R.string.url)+ "login", params, new AsyncHttpResponseHandler() {
+            client.get(getResources().getString(R.string.url) + "login", params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     Log.d("login", "LoginSuccess");
                     if (statusCode == 204) {
-                        Toast.makeText(LoginActivity.this,"잘못된 정보를 입력하셨습니다.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "잘못된 정보를 입력하셨습니다.", Toast.LENGTH_SHORT).show();
                     }
                     // SAVE SESSION_KEY - PREF
                     else {
                         SharedPreferences prefs = getSharedPreferences("PrefIFindYou", MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
+                        String jsonData = new String(responseBody);
+                        UserListView userDataList = new UserListView(getApplicationContext());
+                        userList = new ArrayList<User>();
+                        userList = userDataList.getJsonData(jsonData);
+                        try {
+                            JSONArray jArr = new JSONArray(jsonData);
+                            JSONObject jObj = jArr.getJSONObject(0);
+
+                            editor.putInt("User_Number", jObj.getInt("UserNumber"));
+                            editor.putString("Name", jObj.getString("Name"));
+                            editor.putString("Rank", jObj.getString("Rank"));
+                            editor.putString("Position", jObj.getString("Position"));
+                            editor.putString("Unit", jObj.getString("Unit"));
+                            editor.putString("Content", jObj.getString("Content"));
+                            editor.putInt("PhoneNumber", jObj.getInt("PhoneNumber"));
+                            editor.putString("Status", jObj.getString("Status"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         editor.putString("User_Id", id);
                         editor.commit();
 

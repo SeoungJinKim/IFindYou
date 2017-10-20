@@ -3,6 +3,7 @@ package com.example.administrator.ifindyou;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
@@ -111,6 +112,7 @@ public class RegisterAdditionalActivity extends AppCompatActivity implements Vie
         } else if (v == layoutStatus) {
             RegisterDialog.getInstance().dialogStatus(mPopupDlg, this, textStatus);
         }
+
         if (isCompletedInput) {
             if (v == registerBtn) {
 
@@ -129,6 +131,17 @@ public class RegisterAdditionalActivity extends AppCompatActivity implements Vie
                 params.put("Status", textStatus.getText().toString());
                 params.put("ImgName", "temp.jpg");
 
+                SharedPreferences prefs = getSharedPreferences("PrefIFindYou", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("User_Id", id);
+                editor.putString("Name", textName.getText().toString());
+                editor.putString("Rank", textRank.getText().toString());
+                editor.putString("Position", textPosition.getText().toString());
+                editor.putString("Unit", textUnit.getText().toString());
+                editor.putString("Content", textIntro.getText().toString());
+                editor.putString("PhoneNumber", textPhone.getText().toString());
+                editor.putString("Status", textStatus.getText().toString());
+                editor.commit();
                 client.post(getResources().getString(R.string.url) + "signup", params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
