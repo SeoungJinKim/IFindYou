@@ -24,6 +24,6 @@
 );
 
 > CREATE TABLE IF NOT EXISTS `seoungjin_user_noti`(
-  `Id` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '유저아이디',
-  `NotiId` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '즐겨찾기'
+  `Id` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '보내는아이디',
+  `NotiId` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '받는아이디'
 );
