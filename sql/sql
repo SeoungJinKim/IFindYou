@@ -1,0 +1,29 @@
+> create database OSAM;
+
+> use OSAM;
+
+> CREATE TABLE IF NOT EXISTS `seoungjin_user` (
+  `UserNumber` int(10) unsigned NOT NULL auto_increment COMMENT '유저번호',
+  `Id` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '아이디',
+  `Password` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '비밀번호',
+  `Name` mediumtext collate utf8_unicode_ci NOT NULL COMMENT '이름',
+  `Rank` mediumtext collate utf8_unicode_ci NOT NULL COMMENT '계급',
+  `Position` mediumtext collate utf8_unicode_ci NOT NULL COMMENT '직책',
+  `Unit` mediumtext collate utf8_unicode_ci NOT NULL COMMENT '소속',
+  `Content` varchar(1000) collate utf8_unicode_ci COMMENT '소개글',
+  `PhoneNumber` int(15) collate utf8_unicode_ci COMMENT '번호',
+  `Status` mediumtext collate utf8_unicode_ci NOT NULL COMMENT '상태',
+  `ImgName` varchar(100) collate utf8_unicode_ci NOT NULL COMMENT '이미지경로',
+  UNIQUE KEY `UserNumber` (`UserNumber`),
+  UNIQUE KEY `ID` (`ID`)
+) ;
+
+> CREATE TABLE IF NOT EXISTS `seoungjin_user_star`(
+  `Id` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '유저아이디',
+  `StarId` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '즐겨찾기'
+);
+
+> CREATE TABLE IF NOT EXISTS `seoungjin_user_noti`(
+  `Id` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '유저아이디',
+  `NotiId` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '즐겨찾기'
+);
